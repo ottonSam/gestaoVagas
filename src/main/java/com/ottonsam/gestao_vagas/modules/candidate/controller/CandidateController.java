@@ -1,10 +1,10 @@
-package com.ottonsam.gestao_vagas.candidate.controller;
+package com.ottonsam.gestao_vagas.modules.candidate.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ottonsam.gestao_vagas.candidate.CandidateEntity;
-import com.ottonsam.gestao_vagas.candidate.useCases.CreateCandidateUseCase;
+import com.ottonsam.gestao_vagas.modules.candidate.CandidateEntity;
+import com.ottonsam.gestao_vagas.modules.candidate.useCases.CreateCandidateUseCase;
 
 import jakarta.validation.Valid;
 

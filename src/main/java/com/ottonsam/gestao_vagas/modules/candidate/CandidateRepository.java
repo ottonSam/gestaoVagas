@@ -1,4 +1,4 @@
-package com.ottonsam.gestao_vagas.candidate;
+package com.ottonsam.gestao_vagas.modules.candidate;
 
 import java.util.Optional;
 import java.util.UUID;

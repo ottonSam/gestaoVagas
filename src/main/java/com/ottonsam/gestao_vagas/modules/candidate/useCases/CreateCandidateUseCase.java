@@ -1,11 +1,11 @@
-package com.ottonsam.gestao_vagas.candidate.useCases;
+package com.ottonsam.gestao_vagas.modules.candidate.useCases;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ottonsam.gestao_vagas.candidate.CandidateEntity;
-import com.ottonsam.gestao_vagas.candidate.CandidateRepository;
 import com.ottonsam.gestao_vagas.exceptions.UserFoundException;
+import com.ottonsam.gestao_vagas.modules.candidate.CandidateEntity;
+import com.ottonsam.gestao_vagas.modules.candidate.CandidateRepository;
 
 @Service
 public class CreateCandidateUseCase {
