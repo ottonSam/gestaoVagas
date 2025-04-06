@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity(name = "jobs")
@@ -21,15 +22,19 @@ public class JobEntity {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.UUID)
     private UUID id;
 
+    @NotBlank(message = "Description cannot be empty")
     private String description;
+
     private String benefits;
+
+    @NotBlank(message = "Lavel cannot be empty")
     private String level;
 
     @ManyToOne()
     @JoinColumn(name = "company_id", insertable = false, updatable = false)
     private CompanyEntity company;
     
-    @Column(name = "company_id")
+    @Column(name = "company_id", nullable = false)
     private UUID companyId;
 
     @CreationTimestamp
