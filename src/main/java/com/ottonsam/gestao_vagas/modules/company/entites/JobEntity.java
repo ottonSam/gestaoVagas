@@ -12,10 +12,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "jobs")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class JobEntity {
         
     @Id
@@ -27,7 +33,7 @@ public class JobEntity {
 
     private String benefits;
 
-    @NotBlank(message = "Lavel cannot be empty")
+    @NotBlank(message = "Level cannot be empty")
     private String level;
 
     @ManyToOne()
