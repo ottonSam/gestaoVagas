@@ -2,6 +2,7 @@ package com.ottonsam.gestao_vagas.modules.company.useCases;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
 
 import javax.naming.AuthenticationException;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.ottonsam.gestao_vagas.modules.company.dto.AuthCompanyDTO;
+import com.ottonsam.gestao_vagas.modules.company.dto.AuthCompanyResponseDTO;
 import com.ottonsam.gestao_vagas.modules.company.repositories.CompanyRepository;
 
 @Service
@@ -28,7 +30,7 @@ public class AuthCompanyUseCase {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String execute(AuthCompanyDTO auth) throws AuthenticationException {
+    public AuthCompanyResponseDTO execute(AuthCompanyDTO auth) throws AuthenticationException {
         var company = this.companyRepository.findByUsername(auth.getUsername()).orElseThrow(() -> {
             throw new UsernameNotFoundException("User or password incorrect");
         });
@@ -42,8 +44,11 @@ public class AuthCompanyUseCase {
         var token = JWT.create().withIssuer("gestao-vagas")
             .withExpiresAt(Instant.now().plus(Duration.ofHours(2)))
             .withSubject(company.getId().toString())
+            .withClaim("roles", Arrays.asList("company"))
             .sign(algorithm);
     
-        return token;
+        return AuthCompanyResponseDTO.builder()
+            .accessToken(token)
+            .build();
     }
 }
